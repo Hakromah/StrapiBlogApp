@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksHero extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_heroes';
+  info: {
+    displayName: 'Hero';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    links: Schema.Attribute.Component<'shared.link', true>;
+    text: Schema.Attribute.RichText;
+  };
+}
+
 export interface LayoutBanner extends Struct.ComponentSchema {
   collectionName: 'components_layout_banners';
   info: {
@@ -67,6 +80,7 @@ export interface SharedLogoLink extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.hero': BlocksHero;
       'layout.banner': LayoutBanner;
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
